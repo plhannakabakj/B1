@@ -10,7 +10,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 # insert your Telegram bot token here
-bot = telebot.TeleBot('7526972070:AAHvzU-FMBfzxFxk26HzFAMqixadTZo_Bjo')
+bot = telebot.TeleBot('7590495904:AAFdglWV5N7utNySffevsgAeUuaMcintVS0')
 
 # Admin user IDs
 admin_id = ["5894848388","1786683163","7858950584"]
@@ -261,7 +261,7 @@ def show_recent_logs(message):
         response = "ꜰʀᴇᴇ ᴋᴇ ᴅʜᴀʀᴍ ꜱʜᴀʟᴀ ʜᴀɪ ᴋʏᴀ ᴊᴏ ᴍᴜ ᴜᴛᴛʜᴀ ᴋᴀɪ ᴋʜɪ ʙʜɪ ɢᴜꜱ ʀʜᴀɪ ʜᴏ ʙᴜʏ ᴋʀᴏ ꜰʀᴇᴇ ᴍᴀɪ ᴋᴜᴄʜ ɴʜɪ ᴍɪʟᴛᴀ ʙᴜʏ:- @CreativeYdv ❄."
         bot.reply_to(message, response)
 
-# New function to periodically send the "Bot is active" message every 55 minutes
+# New function to periodically send the "Bot is active" message every 25 minutes
 def send_periodic_message():
     while True:
         for user_id in allowed_user_ids:
@@ -271,7 +271,7 @@ def send_periodic_message():
 ❖ ᴘᴏᴡᴇʀᴇᴅ ʙʏ ➥@CreativeYdv⏤͟͟͞͞★🕊️''')
             except Exception as e:
                 print(f"Failed to send message to {user_id}: {e}")
-        time.sleep(3300)  # Wait 55 minutes before sending the message again
+        time.sleep(1500)  # Wait 25 minutes before sending the message again
 
 # Start the periodic message in a separate thread
 threading.Thread(target=send_periodic_message).start()
@@ -317,7 +317,7 @@ def run_attack_and_notify(message, user_id, target, port, time):
         markup = InlineKeyboardMarkup()
         button = InlineKeyboardButton(
             "🫧 ᴍᴜsᴛ ᴄʜᴇᴄᴋᴏᴜᴛ ᴛʜɪs 🫧", 
-            url="https://t.me/CreativeYdv?startgroup=s&admin=delete_messages+manage_video_chats+pin_messages+invite_users"
+            url="https://t.me/M4_Music_BoT?start=help"
         )
         markup.add(button)
         
@@ -355,15 +355,17 @@ def handle_bgmi1(message):
                 log_command(user_id, target, port, time)
                 
                 # Immediate response after attack initiation
-                username = message.from_user.username if message.from_user.username else message.from_user.first_name
-                attack_start_message = (
-                    f"{username}, 𝐀𝐭𝐭𝐚𝐜𝐤 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐒𝐭𝐚𝐫𝐭𝐞𝐝 😁♥️\n\n"
-                    f"𝐓𝐚𝐫𝐠𝐞𝐭: {target}\n"
-                    f"𝐏𝐨𝐫𝐭: {port}\n"
-                    f"𝐓𝐢𝐦𝐞: {time} 𝐒𝐞𝐜𝐨𝐧𝐝𝐬\n"
-                    f"𝐌𝐞𝐭𝐡𝐨𝐝: VIP- User of :- @CreativeYdv."
-                )
-                bot.reply_to(message, attack_start_message)  # Send the attack initiation message
+username = message.from_user.username if message.from_user.username else message.from_user.first_name
+username = f"@{username}" if message.from_user.username else username  # @ जोड़ें
+
+attack_start_message = (
+    f"{username}, 𝐀𝐭𝐭𝐚𝐜𝐤 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐒𝐭𝐚𝐫𝐭𝐞𝐝 😁♥️\n\n"
+    f"𝐓𝐚𝐫𝐠𝐞𝐭: `{target}`\n"
+    f"𝐏𝐨𝐫𝐭: `{port}`\n"
+    f"𝐓𝐢𝐦𝐞: `{time}` 𝐒𝐞𝐜𝐨𝐧𝐝𝐬\n"
+    f"𝐌𝐞𝐭𝐡𝐨𝐝: [ᴍᴜsɪᴄ ʙᴏᴛ](https://t.me/M4_Music_BoT?start=help)"
+)
+bot.reply_to(message, attack_start_message, parse_mode="Markdown")  # Send the attack initiation message
                 
                 # Run the attack in a separate thread to allow the bot to respond immediately
                 threading.Thread(target=run_attack_and_notify, args=(message, user_id, target, port, time)).start()
